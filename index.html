@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoctorTalk: BP Summary Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 2em; }
+    h1 { color: #0a2540; }
+    textarea, input { width: 100%; margin-bottom: 1em; padding: 0.5em; font-size: 1em; }
+    button { padding: 0.75em 1.5em; background-color: #0a2540; color: white; border: none; cursor: pointer; }
+    #output { white-space: pre-wrap; background-color: #f4f4f4; padding: 1em; margin-top: 2em; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>DoctorTalk: Blood Pressure Summary Generator</h1>
+
+  <label>Your BP Readings (with dates)</label>
+  <textarea id="bpReadings" rows="4" placeholder="e.g., 6/15: 165/100
+6/17: 145/90 after fasting"></textarea>
+
+  <label>Current Medications</label>
+  <textarea id="medications" rows="3" placeholder="e.g., Lisinopril 10mg, started 2 months ago"></textarea>
+
+  <label>Symptoms or Patterns You've Noticed</label>
+  <textarea id="symptoms" rows="4" placeholder="e.g., Lightheadedness on standing, BP drops after fasting"></textarea>
+
+  <label>Doctor’s Feedback or What’s Been Tried</label>
+  <textarea id="history" rows="3" placeholder="e.g., Doctor called it essential hypertension, no further tests"></textarea>
+
+  <label>Your Top Questions for the Doctor</label>
+  <textarea id="questions" rows="3" placeholder="e.g., Could insulin resistance be the cause? Should I pause meds after fasting?"></textarea>
+
+  <button onclick="generateSummary()">Generate Summary</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateSummary() {
+      const bp = document.getElementById('bpReadings').value;
+      const meds = document.getElementById('medications').value;
+      const symptoms = document.getElementById('symptoms').value;
+      const history = document.getElementById('history').value;
+      const questions = document.getElementById('questions').value;
+
+      const summary = `🧾 Blood Pressure Summary for Doctor Review
+
+✅ Patient Observations:
+- ${symptoms}
+
+💊 Current Medications:
+- ${meds}
+
+📈 BP Readings Snapshot:
+${bp}
+
+❓ Key Concerns:
+- ${history}
+
+🙋‍♂️ Patient Questions for Doctor:
+- ${questions.split('\n').join('\n- ')}
+
+---
+This summary was generated with Infinite Second Opinions to help improve clarity and conversation during appointments.`;
+
+      document.getElementById('output').innerText = summary;
+    }
+  </script>
+</body>
+</html>
